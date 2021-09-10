@@ -1,5 +1,6 @@
 from .managers import BroadlinkManager
 from .controllers import BroadlinkTvController
+from .controllers import BroadlinkDeviceController
 from .controllers import BroadlinkRgbLampController
 
 config = {

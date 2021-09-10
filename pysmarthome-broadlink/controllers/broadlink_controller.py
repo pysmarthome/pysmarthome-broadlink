@@ -1,18 +1,14 @@
-from pysmarthome import DeviceController
-from ..models import BroadlinkDevicesModel
+from pysmarthome import MultiCommandDeviceController
 from ..managers.manager import BroadlinkManager
+from base64 import b64decode as decode
 
 
-class BroadlinkDeviceController(DeviceController):
-    model_class = BroadlinkDevicesModel
+class BroadlinkDeviceController(MultiCommandDeviceController):
+    model_class = MultiCommandDeviceController.model_class
     manager_class = BroadlinkManager
 
 
     def send_command(self, id):
         for cmd in self.model.commands:
             if (cmd.label == id) or (cmd.id == id):
-                return self.dev.send_data(cmd.decoded)
-
-
-    def set_command(self, id, data):
-        self.dev.model.commands.set(id, data)
+                return self.dev.send_data(decode(cmd.data))
