@@ -1,19 +1,27 @@
 from .broadlink_controller import BroadlinkDeviceController
-from ..models import AcsModel
+from pysmarthome import AcsModel, AcController, clone
 
-class AcController(BroadlinkDeviceController):
-    model_class = AcsModel
+
+class BroadlinkAcController(AcController, BroadlinkDeviceController):
+    model_class = AcsModel.clone('BroadlinkAcsModel')
+    model_class.children_model_classes = clone(BroadlinkDeviceController.model_class.children_model_classes)
+    model_class.children_model_classes |= clone(AcsModel.children_model_classes)
+    model_class.collection = AcsModel.collection
 
 
     def on(self):
-        if self.should_update_power('on'):
-            self.send_command('on')
-            return True
-        return False
+        self.send_command('on')
+        return True
 
 
     def off(self):
-        if self.should_update_power('off'):
-            self.send_command('off')
-            return True
-        return False
+        self.send_command('off')
+        return True
+
+
+    def set_temp_by(self, n):
+        self.set_int_state_attr_by('temp', n)
+
+
+    def set_temp_to(self, target):
+        self.set_int_state_attr_to('temp', target)
