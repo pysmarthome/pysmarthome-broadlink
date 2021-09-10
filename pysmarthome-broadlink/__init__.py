@@ -1,5 +1,5 @@
 from .managers import BroadlinkManager
-from .controllers import AcController, TvController, BroadlinkDeviceController
+from .controllers import BroadlinkTvController
 from .controllers import BroadlinkRgbLampController
 
 config = {
@@ -7,8 +7,7 @@ config = {
 }
 
 device_controllers = [
-    AcController,
-    TvController,
+    BroadlinkTvController,
     BroadlinkDeviceController,
     BroadlinkRgbLampController,
 ]
