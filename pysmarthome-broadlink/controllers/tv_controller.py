@@ -3,10 +3,9 @@ from pysmarthome import TvsModel, TvController, clone
 
 
 class BroadlinkTvController(TvController, BroadlinkDeviceController):
-    model_class = TvsModel.clone('BroadlinkTvsModel')
+    model_class = TvsModel.clone()
     model_class.children_model_classes = clone(BroadlinkDeviceController.model_class.children_model_classes)
     model_class.children_model_classes |= clone(TvsModel.children_model_classes)
-    model_class.collection = TvsModel.collection
 
 
     def on(self):
