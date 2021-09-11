@@ -3,10 +3,9 @@ from pysmarthome import AcsModel, AcController, clone
 
 
 class BroadlinkAcController(AcController, BroadlinkDeviceController):
-    model_class = AcsModel.clone('BroadlinkAcsModel')
+    model_class = AcsModel.clone()
     model_class.children_model_classes = clone(BroadlinkDeviceController.model_class.children_model_classes)
     model_class.children_model_classes |= clone(AcsModel.children_model_classes)
-    model_class.collection = AcsModel.collection
 
 
     def on(self):
