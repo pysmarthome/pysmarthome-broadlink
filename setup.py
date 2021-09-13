@@ -7,7 +7,7 @@ setup(
     author='Filipe Alves',
     author_email='filipe.alvesdefernando@gmail.com',
     install_requires=[
-        'pysmarthome~=2.2',
+        'pysmarthome~=3.0',
         'broadlink',
     ],
     packages=find_packages(),
