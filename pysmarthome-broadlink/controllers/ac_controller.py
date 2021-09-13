@@ -1,11 +1,9 @@
 from .broadlink_controller import BroadlinkDeviceController
-from pysmarthome import AcsModel, AcController, clone
+from pysmarthome import Model, AcsModel, AcController, MultiCommandDevicesModel
 
 
 class BroadlinkAcController(AcController, BroadlinkDeviceController):
-    model_class = AcsModel.clone()
-    model_class.children_model_classes = clone(BroadlinkDeviceController.model_class.children_model_classes)
-    model_class.children_model_classes |= clone(AcsModel.children_model_classes)
+    model_class = Model.extends(MultiCommandDevicesModel, AcsModel, name='BroadlinkAcsModel')
 
 
     def on(self):

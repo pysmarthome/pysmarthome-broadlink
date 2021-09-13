@@ -1,11 +1,9 @@
 from .broadlink_controller import BroadlinkDeviceController
-from pysmarthome import TvsModel, TvController, clone
+from pysmarthome import Model, TvsModel, TvController, MultiCommandDevicesModel
 
 
 class BroadlinkTvController(TvController, BroadlinkDeviceController):
-    model_class = TvsModel.clone()
-    model_class.children_model_classes = clone(BroadlinkDeviceController.model_class.children_model_classes)
-    model_class.children_model_classes |= clone(TvsModel.children_model_classes)
+    model_class = Model.extends(MultiCommandDevicesModel, TvsModel, name='BroadlinkTvsModel')
 
 
     def on(self):

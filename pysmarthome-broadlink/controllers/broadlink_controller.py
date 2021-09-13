@@ -1,10 +1,10 @@
-from pysmarthome import MultiCommandDeviceController
+from pysmarthome import Model, MultiCommandDeviceController
 from ..managers.manager import BroadlinkManager
 from base64 import b64decode as decode
 
 
 class BroadlinkDeviceController(MultiCommandDeviceController):
-    model_class = MultiCommandDeviceController.model_class
+    model_class = Model.extends(MultiCommandDeviceController.model_class, name='BroadlinkDevicesModel')
     manager_class = BroadlinkManager
 
 
