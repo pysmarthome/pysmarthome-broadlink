@@ -22,7 +22,7 @@ class BroadlinkTvController(TvController, BroadlinkDeviceController):
 
 
     def set_vol_by(self, n):
-        self.set_int_state_attr_to('volume', n)
+        self.set_int_state_attr_by('volume', n)
 
 
     def set_vol_to(self, target):
